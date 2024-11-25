@@ -2,6 +2,7 @@
 
 use App\Core\Route;
 
+$usersURL = Route::getUrlFromName('usersList');
 /* $branchesURL = Route::getUrlFromName('branchesList');
 $categoriesURL = Route::getUrlFromName('categoriesList');
 $productsURL = Route::getUrlFromName('productsList');
@@ -28,6 +29,7 @@ $customersURL = Route::getUrlFromName('customersList'); */
                             Sistema
                         </a>
                         <ul class="dropdown-menu bg-white">
+                            <li><a class="nav-link text-dark active" aria-current="page" href="<?= $usersURL; ?>">Usuarios</a></li>
                             <li><a class="nav-link text-dark active" aria-current="page" href="<? #= $branchesURL; 
                                                                                                 ?>">Sucursales</a></li>
                             <li><a class="nav-link text-dark" href="<? #= $categoriesURL; 

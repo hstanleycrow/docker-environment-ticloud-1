@@ -12,7 +12,16 @@ Route::get('/close', 'AuthControllers/AuthCloseSessionController#closeSession', 
 #NoAdmin message
 Route::get('/access_denied', 'AuthControllers/AuthAccessDeniedController#showMessage', 'accessDenied');
 
-Route::get('/\ticloudgestiones/vendor/hstanleycrow/easyphpdatatables/src/server_processing.php', 'DatatableController#index', 'serverProcessing');
+Route::get('/easyphpdatatables/server_processing.php', 'DatatableController#index', 'serverProcessing');
+
+
+# Users
+Route::get('/users', 'UsersControllers/UsersIndexController#index', 'usersList')->middleware('auth', 'admin');
+Route::get('/user/agregar', 'UsersControllers/UsersCreateController#showForm', 'showUserAddForm')->middleware('auth');
+Route::post('/user/agregar', 'UsersControllers/UsersCreateController#create', 'createUser')->middleware('auth');
+Route::get('/user/editar/[i:id]/', 'UsersControllers/UsersUpdateController#showForm', 'showUserEditForm')->middleware('auth');
+Route::post('/user/editar/[i:id]/', 'UsersControllers/UsersUpdateController#save', 'saveUser')->middleware('auth');
+Route::get('/user/borrar/[i:id]/', 'UsersControllers/UsersDeleteController#delete', 'deleteUser');
 /* 
 // # Branches
 Route::get('/branches', 'BranchesControllers/BranchesIndexController#index', 'branchesList')->middleware('auth', 'admin');

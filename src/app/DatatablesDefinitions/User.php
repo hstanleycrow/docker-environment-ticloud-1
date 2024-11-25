@@ -19,7 +19,8 @@ class User
             [
                 'view_name' => 'Nombre',
                 'db_name' => '`a`.`name`',
-                'field' => 'user_name', 'as' => 'user_name',
+                'field' => 'user_name',
+                'as' => 'user_name',
                 'format' => 'text',
             ],
             [
@@ -35,16 +36,16 @@ class User
                 'format' => 'text',
             ],
             [
+                'view_name' => 'es Admin',
+                'db_name' => '`a`.`isAdmin`',
+                'field' => 'isAdmin',
+                'format' => 'text',
+            ],
+            [
                 'view_name' => 'Created at',
                 'db_name' => '`a`.`created_at`',
                 'field' => 'created_at',
                 'format' => 'date',
-            ],
-            [
-                'view_name' => 'Estado',
-                'db_name' => '`b`.`name`',
-                'field' => 'status_name', 'as' => 'status_name',
-                'format' => 'text',
             ],
         ];
     }
@@ -75,7 +76,8 @@ class User
     }
     public function getJoinQuery(): string
     {
-        return "FROM `{$this->dbTable}` AS `a` INNER JOIN `user_status` AS `b` ON (`a`.`status_id` = `b`.`id`)";
+        return "FROM `{$this->dbTable}` AS `a`";
+        #return "FROM `{$this->dbTable}` AS `a` INNER JOIN `user_status` AS `b` ON (`a`.`status_id` = `b`.`id`)";
     }
     public function getExtraCondition(): string
     {

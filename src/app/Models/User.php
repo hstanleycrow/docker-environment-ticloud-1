@@ -46,8 +46,9 @@ class User extends Model
      * @param $fields: a list of fields on array format to insert into table
      * @return returns user_id or error number
      * */
-    public function create($data): self
+    public function create(array $data): self
     {
+
         if (isset($data['password'])) {
             // Obtener el password sin cifrar
             $plainPassword = $data['password'] . AUTH_SALT;
@@ -73,7 +74,21 @@ class User extends Model
      * @param $fields: a list of fields on array format to insert into table
      * @return returns user_id or error number
      * */
+    public function update(array $updateFields, array $whereConditions): self
+    {
 
+        if (isset($updateFields['password'])) {
+            // Obtener el password sin cifrar
+            $plainPassword = $updateFields['password'] . AUTH_SALT;
+            // Encriptar el password utilizando el método passwordHash
+            $hashedPassword = $this->passwordHash($plainPassword);
+
+            // Reemplazar el password sin cifrar con el password encriptado en el arreglo de datos
+            $datupdateFieldsa['password'] = $hashedPassword;
+        }
+        parent::update($updateFields, $whereConditions);
+        return $this;
+    }
 
     public function isUpdated(): bool
     {
@@ -98,26 +113,18 @@ class User extends Model
         $records = parent::getRecords();
         return (count($records) > 0) ? $records : [];
     }
-    public function getUsuarioById(): array
+
+    public function getById(int $id): ?array
     {
-        $data = array();
-        /*$query = "
-                SELECT 
-                    tipo_de_persona_id, 
-                    usuario_nombre, 
-                    usuario_apellido, 
-                    usuario_usuario, 
-                    usuario_estado,
-                    usuario_clave 
-                FROM 
-                    usuarios 
-                WHERE 
-                    usuario_id = '{$this->usuario_id}'
-            ";
-        #echo $query . PHP_EOL;
-        
-        $data = $this->GetData($query);*/
-        return $data;
+        $this->query = "
+            SELECT 
+                *
+            FROM 
+                $this->table
+            WHERE 
+                id = $id
+        ";
+        return $this->getRecords()[0];
     }
 
     /*protected function getUsuarioByUsuario(): array
@@ -184,7 +191,7 @@ class User extends Model
             return false;
         }
     }
-    static function passwordHash($usuario_clave)
+    public static function passwordHash($usuario_clave)
     {
         if (function_exists('password_hash'))
             return password_hash($usuario_clave, PASSWORD_DEFAULT);
