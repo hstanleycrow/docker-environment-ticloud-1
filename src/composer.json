@@ -1,0 +1,84 @@
+{
+    "name": "ticloudcrm/ticloudcrm",
+    "description": "Sistema para el control de ventas y sitio publico.",
+    "keywords": [
+        "TICLOUD"
+    ],
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Harold Stanley TheCrow Rivas",
+            "email": "hstanley@microaplicaciones.com",
+            "homepage": "http://www.microaplicaciones.com",
+            "role": "developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/hstanleycrow/EasyFormValidator.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/hstanleycrow/EasyPHPDatatables.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/hstanleycrow/PHPDatatableUIBuilder.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/hstanleycrow/EasyPHPWebComponents.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/hstanleycrow/EasyPHPReports.git"
+        }
+    ],
+    "require": {
+        "php": ">=8.2.0",
+        "monolog/monolog": "^3.2",
+        "league/plates": "^3.4",
+        "nesbot/carbon": "^2.62",
+        "altorouter/altorouter": "^2.0",
+        "vlucas/phpdotenv": "^5.6",
+        "twbs/bootstrap": "^5.3.0",
+        "phpoffice/phpspreadsheet": "^1.29",
+        "mpdf/mpdf": "^8.1",
+        "fakerphp/faker": "^1.23",
+        "symfony/http-foundation": "^6.3",
+        "hstanleycrow/easyformvalidator": "^1.0.0",
+        "hstanleycrow/easyphpwebcomponents": "^1.0.1",
+        "hstanleycrow/phpdatatableuibuilder": "^1.0.1",
+        "hstanleycrow/easyphpreports": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Models\\": "app/Models/",
+            "Core\\": "app/Core/",
+            "Config\\": "config/",
+            "App\\DatatablesDefinitions\\": "DatatablesDefinitions/",
+            "App\\ReportsDefinitions\\": "ReportsDefinitions/",
+            "App\\Components\\": "Components/"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "helpers/helpers.php"
+        ]
+    },
+    "scripts": {
+        "copyBootstrap": [
+            "rm -rf resources/bootstrap",
+            "cp -R vendor/twbs/bootstrap/dist public/assets/bootstrap"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "robloach/component-installer": true
+        }
+    }
+}

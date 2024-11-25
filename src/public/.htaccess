@@ -1,0 +1,21 @@
+RewriteEngine on
+
+# Agrega una excepción para archivos CSS y JS
+RewriteCond %{REQUEST_URI} \.css$ [OR]
+RewriteCond %{REQUEST_URI} \.js$ 
+RewriteCond %{REQUEST_URI} \.jpg$ [OR]
+RewriteCond %{REQUEST_URI} \.jpeg$ [OR]
+RewriteCond %{REQUEST_URI} \.gif$ [OR]
+RewriteCond %{REQUEST_URI} \.webp$ [OR]
+RewriteCond %{REQUEST_URI} \.svg$ [OR]
+RewriteCond %{REQUEST_URI} \.png$
+
+RewriteRule ^ - [L]
+
+# Sirve archivos estáticos desde la carpeta de recursos
+RewriteRule ^resources/(.*)$ /resources/$1 [L]
+
+# Las reglas existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]

@@ -1,0 +1,75 @@
+#categories a {
+    text-decoration: none;
+}
+
+.fila:hover {
+    background-color: rgb(255, 200, 0);
+}
+
+.fila.selected {
+    background-color: rgb(255, 200, 0);
+
+}
+
+.fila {
+    padding: 10px;
+    border-bottom: #cccccc 1px solid;
+}
+
+#categories span {
+    margin: 5px;
+
+}
+
+#centro {
+    background-color: #f4f3f3;
+}
+
+#centro,
+#cart {
+    padding-top: 20px;
+}
+
+.noroundborder {
+    border-radius: 0 !important;
+}
+
+#decreaseQuantity {
+    margin-right: 15px;
+}
+
+#increaseQuantity {
+    margin-left: 15px;
+}
+
+.productCart {
+    line-height: 1;
+}
+
+.productCart p {
+    margin-bottom: 0.6rem;
+}
+
+.item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item-image {
+    margin-right: 10px;
+}
+
+.item-input {
+    margin-right: 10px;
+}
+
+.item-label {
+    flex-grow: 1;
+}
+
+#saucesContainer,
+#extrasContainer1,
+#extrasContainer2 {
+    flex-basis: 33.33%;
+}
