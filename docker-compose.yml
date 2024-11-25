@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: php_app
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "8000:80"
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_ticcrm
+      MYSQL_USER: us_ticrm
+      MYSQL_PASSWORD: ErRiñ3#%3dddsqwe
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
