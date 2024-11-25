@@ -1,0 +1,4 @@
+/src/vendor/
+/database/*.log
+/.env
+/docker/php/xdebug.log
